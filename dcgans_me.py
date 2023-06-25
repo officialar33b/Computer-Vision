@@ -18,12 +18,12 @@ torch.manual_seed(manual_seed)
 
 dataset = datasets.CIFAR10(root="./data", download=True,
                            transform=transforms.Compose([
-                               transforms.Resize(128),
+                               transforms.Resize(64),
                                transforms.ToTensor(),
                                transforms.Normalize((0.5, 0.5 , 0.5), (0.5, 0.5, 0.5))
                            ]))
 
-dataloader = torch.utils.data.DataLoader(dataset, batch_size=64, shuffle=True, num_workers=2)
+dataloader = torch.utils.data.DataLoader(dataset, batch_size=128, shuffle=True, num_workers=2)
 
 #Checking Cuda.
 device = "cuda" if torch.cuda.is_available() else 'cpu'
@@ -31,8 +31,8 @@ print(device)
 
 num_classes=3
 noise_dim = 100
-num_gen_filters=128
-num_disc_filters = 128
+num_gen_filters=64
+num_disc_filters = 64
 
 def weights_init(m):
     classname = m.__class__.__name__
